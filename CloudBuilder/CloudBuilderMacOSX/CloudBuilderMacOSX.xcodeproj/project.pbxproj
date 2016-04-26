@@ -454,7 +454,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\nmkdir -p \"$PROJECT_DIR\"/../../delivery/CloudBuilder/headers\n\ncp \"$CONFIGURATION_BUILD_DIR\"/usr/local/include/*  \"$PROJECT_DIR\"/../../delivery/CloudBuilder/headers/\n\nmkdir -p \"$PROJECT_DIR\"/../../delivery/CloudBuilder/MacOSX/$CONFIGURATION\n\nlibtool -static -o \"$PROJECT_DIR\"/../../delivery/CloudBuilder/MacOSX/$CONFIGURATION/libCloudBuilder.a \"$CONFIGURATION_BUILD_DIR\"/*.a \"$PROJECT_DIR\"/../../delivery/curl/MacOSX/$CONFIGURATION/*.a \"$PROJECT_DIR/../../delivery/openssl/MacOSX/lib/libcrypto.a\" \"$PROJECT_DIR/../../delivery/openssl/MacOSX/lib/libssl.a\"\n\n";
+			shellScript = "\nmkdir -p \"$PROJECT_DIR\"/../../delivery/CloudBuilder/headers\n\ncp \"$CONFIGURATION_BUILD_DIR\"/usr/local/include/*  \"$PROJECT_DIR\"/../../delivery/CloudBuilder/headers/\n                                                \n                                                mkdir -p \"$PROJECT_DIR\"/../../delivery/CloudBuilder/MacOSX/$CONFIGURATION\n                                                \n                                                libtool -static -o \"$PROJECT_DIR\"/../../delivery/CloudBuilder/MacOSX/$CONFIGURATION/libCloudBuilder.a /usr/local/opt/openssl/lib/libcrypto.a /usr/local/opt/openssl/lib/libssl.a\n                                                \n";
 		};
 		C27BECE018EAF23D003CE68A /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -642,6 +642,11 @@
 					"\"$(SRCROOT)/../../delivery/openssl/MacOSX/lib\"",
 				);
 				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CFLAGS = (
+					"-D__MACOS__",
+					"-I/usr/local/opt/openssl/include",
+				);
+				OTHER_LDFLAGS = "-L/usr/local/opt/openssl/lib";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "";
 				VALID_ARCHS = "i386 x86_64";
@@ -669,6 +674,11 @@
 					"\"$(SRCROOT)/../../delivery/openssl/MacOSX/lib\"",
 				);
 				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CFLAGS = (
+					"-D__MACOS__",
+					"-I/usr/local/opt/openssl/include",
+				);
+				OTHER_LDFLAGS = "-L/usr/local/opt/openssl/lib";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "";
 				VALID_ARCHS = "i386 x86_64";
@@ -710,10 +720,15 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CFLAGS = (
+					"-D__MACOS__",
+					"-I/usr/local/opt/openssl/include",
+				);
 				OTHER_LDFLAGS = (
 					"-lcrypto",
 					"-lssl",
 					"-lMacosXCurl",
+					"-L/usr/local/opt/openssl/lib",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -753,10 +768,15 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CFLAGS = (
+					"-D__MACOS__",
+					"-I/usr/local/opt/openssl/include",
+				);
 				OTHER_LDFLAGS = (
 					"-lcrypto",
 					"-lssl",
 					"-lMacosXCurl",
+					"-L/usr/local/opt/openssl/lib",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "";
